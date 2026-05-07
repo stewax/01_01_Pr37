@@ -66,3 +66,12 @@ h3 {
 h2 {
     margin-left: 20px;
 }
+
+.selection {
+    margin-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

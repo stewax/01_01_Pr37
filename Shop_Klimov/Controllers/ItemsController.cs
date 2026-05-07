@@ -16,13 +16,22 @@ namespace Shop_Klimov.Controllers
             this.IAllCategorys = IAllCategorys;
         }
 
-        public ViewResult List(int id = 0)
+        public ViewResult List(int id = 0, string sort = "")
         {
             ViewBag.Title = "Страница с предметами";
 
             VMItems.Items = IAllItems.AllItems;
             VMItems.Categories = IAllCategorys.AllCategories;
             VMItems.SelectCategory = id;
+
+            if (sort == "asc")
+            {
+                VMItems.Items = VMItems.Items.OrderBy(i => i.Price);
+            }
+            else if (sort == "desc")
+            {
+                VMItems.Items = VMItems.Items.OrderByDescending(i => i.Price);
+            }
 
             return View(VMItems);
         }

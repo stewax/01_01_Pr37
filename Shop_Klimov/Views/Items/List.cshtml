@@ -6,8 +6,8 @@
     Layout = "_Layout";
 }
 
-<div>
-    <select onchange="SelectCategory(this)">
+<div class="selection" >
+    <select id="categorySelect" onchange="SelectCategory(this)" style="height: 30px">
         <option value="0">Выбрать...</option>
         @{
             foreach (var Category in Model.Categories)
@@ -23,9 +23,22 @@
             }
         }
     </select>
+    <p>Сортировка по цене:</p>
+    <button onclick="sortAsc()">От меньшей к большей</button>
+    <button onclick="sortDesc()">От большей к меньшей</button>
     <script>
         function SelectCategory(sender) {
-            window.Location = "/Items/List?id=" + sender.value;
+            window.location = "/Items/List?id=" + sender.value;
+        }
+
+        function sortAsc() {
+            var select = document.getElementById(`categorySelect`);
+            window.location = "/Items/List?id=" + select.value + "&sort=asc";
+        }
+
+        function sortDesc() {
+            var select = document.getElementById(`categorySelect`);
+            window.location = "/Items/List?id=" + select.value + "&sort=desc";
         }
     </script>
 </div>
@@ -35,7 +48,7 @@
 @{
     foreach (var item in Model.Items)
     {
-        if (item.Category.Id == Model.SelectCategory)
+        if (Model.SelectCategory == 0 || item.Category.Id == Model.SelectCategory)
         {
             <div class="item">
                 <img src="@item.Img" />
