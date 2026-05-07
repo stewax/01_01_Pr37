@@ -24,6 +24,7 @@ namespace Shop_Klimov.Data.DataBase
                         Description = CategoriesData.IsDBNull(2) ? null : CategoriesData.GetString(2)
                     });
                 }
+                MySqlConnection.Close();
                 return categories;
             }
         }
