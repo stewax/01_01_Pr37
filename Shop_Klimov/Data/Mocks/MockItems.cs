@@ -24,37 +24,37 @@ namespace Shop_Klimov.Data.Mocks
                     },
                     new Items
                     {
-                        Id = 7,
+                        Id = 1,
                         Name = "Samsung Galaxy Buds2 Pro",
                         Description = "Беспроводные наушники с активным шумоподавлением и звуком от AKG для погружения в музыку",
-                        Img = "https://avatars.mds.yandex.net/get-mpic/5123789/2a00000193cd4ef5ab6789012cdef345678901b/900x1200",
+                        Img = "https://c.dns-shop.ru/thumb/st4/fit/500/500/9c643728619d17df359aef323dea8024/ebe0f042a9d882b01e333cd0581fc57c90ba6dd2a540b1a0f8640ef8d47b9c76.jpg.webp",
                         Price = 14990,
                         Category = _category.AllCategories.Where(x => x.Id == 1).First()
                     },
                     new Items
                     {
-                        Id = 8,
+                        Id = 2,
                         Name = "Apple iPad Air 5",
                         Description = "Мощный планшет с чипом M1, 10.9\" дисплеем Liquid Retina и поддержкой Apple Pencil 2-го поколения",
-                        Img = "https://avatars.mds.yandex.net/get-mpic/4891256/2a00000192de5fa6bc7890123def456789012c/900x1200",
+                        Img = "https://avatars.mds.yandex.net/get-mpic/5214322/2a00000195cbea632ab02e7e55e19889f9f1/180x240",
                         Price = 54990,
                         Category = _category.AllCategories.Where(x => x.Id == 2).First()
                     },
                     new Items
                     {
-                        Id = 9,
+                        Id = 3,
                         Name = "Xiaomi Redmi Watch 3",
                         Description = "Умные часы с AMOLED-экраном, отслеживанием пульса, сна и более 100 спортивными режимами",
-                        Img = "https://avatars.mds.yandex.net/get-mpic/6734512/2a00000191ef6ab7cd8901234ef567890123d/900x1200",
+                        Img = "https://avatars.mds.yandex.net/get-mpic/14794092/2a0000019be71514b251745ed3dec5458636/180x240_multiply",
                         Price = 6499,
                         Category = _category.AllCategories.Where(x => x.Id == 3).First()
                     },
                     new Items
                     {
-                        Id = 10,
+                        Id = 4,
                         Name = "Sony WH-1000XM5",
                         Description = "Флагманские беспроводные наушники с лучшим в классе шумоподавлением и до 30 часов автономной работы",
-                        Img = "https://avatars.mds.yandex.net/get-mpic/3456789/2a00000190fa7bc8de9012345fa678901234e/900x1200",
+                        Img = "https://avatars.mds.yandex.net/get-mpic/15246975/2a00000197acc3cb3aad6d78985be7165582/180x240_multiply",
                         Price = 29990,
                         Category = _category.AllCategories.Where(x => x.Id == 1).First()
                     }

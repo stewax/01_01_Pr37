@@ -7,13 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.3.9" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.3.9" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.12" />
+    <Content Remove="wwwroot\img\basket.png" />
+    <Content Remove="wwwroot\img\search.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\img\" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.3.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="wwwroot\img\basket.png" />
+    <Resource Include="wwwroot\img\search.png" />
   </ItemGroup>
 
 </Project>
