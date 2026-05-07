@@ -1,0 +1,19 @@
+﻿@using Shop_Klimov.Data.Models
+
+@model IEnumerable<Categories>
+
+@{
+    Layout = "_Layout";
+}
+<h2>Все категории</h2>
+@{
+    foreach (var categories in Model)
+    {
+        <div class="category">
+            <div class="data">
+                <h3>Модель: @categories.Name</h3>
+                <div>Описание: @categories.Description</div>
+            </div>
+        </div>
+    }
+}
