@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop_Klimov.Data.Interfaces;
+using Shop_Klimov.Data.ViewModell;
 
 namespace Shop_Klimov.Controllers
 {
@@ -7,6 +8,7 @@ namespace Shop_Klimov.Controllers
     {
         private IItems IAllItems;
         private ICategorys IAllCategorys;
+        VMItems VMItems = new VMItems();
 
         public ItemsController(IItems IAllItems, ICategorys IAllCategorys)
         {
@@ -14,12 +16,15 @@ namespace Shop_Klimov.Controllers
             this.IAllCategorys = IAllCategorys;
         }
 
-        public ViewResult List()
+        public ViewResult List(int id = 0)
         {
             ViewBag.Title = "Страница с предметами";
 
-            var cars = IAllItems.AllItems;
-            return View(cars);
+            VMItems.Items = IAllItems.AllItems;
+            VMItems.Categories = IAllCategorys.AllCategories;
+            VMItems.SelectCategory = id;
+
+            return View(VMItems);
         }
     }
 }
