@@ -145,5 +145,22 @@ namespace Shop_Klimov.Controllers
 
             return Json(BasketItem);
         }
+
+        public ActionResult Basket(int idItem = -1, int count = -1)
+        {
+            if (idItem != -1)
+            {
+                if (count == 0)
+                {
+                    BasketItem.Remove(BasketItem.Find(x => x.Id == idItem));
+                }
+                else
+                {
+                    BasketItem.Find(x => x.Id == idItem).Count = count;
+                }
+            }
+
+            return Json(BasketItem);
+        }
     }
 }
