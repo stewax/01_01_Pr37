@@ -1,6 +1,7 @@
 using Shop_Klimov.Data.DataBase;
 using Shop_Klimov.Data.Interfaces;
 using Shop_Klimov.Data.Mocks;
+using Shop_Klimov.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMvc(option => option.EnableEndpointRouting = false);

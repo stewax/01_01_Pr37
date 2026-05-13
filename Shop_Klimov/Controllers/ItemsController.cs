@@ -13,6 +13,8 @@ namespace Shop_Klimov.Controllers
         private ICategorys IAllCategorys;
         VMItems VMItems = new VMItems();
 
+        public static List<ItemsBasket> BasketItem = new List<ItemsBasket>();
+
         public ItemsController(IItems IAllItems, ICategorys IAllCategorys, IHostEnvironment environment)
         {
             this.IAllItems = IAllItems;
@@ -132,6 +134,16 @@ namespace Shop_Klimov.Controllers
 
             IAllItems.Update(item);
             return Redirect("/Items/List");
+        }
+
+        public ActionResult Basket(int idItem = -1)
+        {
+            if (idItem != -1)
+            {
+                BasketItem.Add(new ItemsBasket(1, IAllItems.AllItems.Where(x => x.Id == idItem).First()));
+            }
+
+            return Json(BasketItem);
         }
     }
 }
