@@ -33,5 +33,31 @@ namespace Shop_Klimov.Data.DataBase
                 return items;
             }
         }
+
+        public int Add(Items item)
+        {
+            MySqlConnection MySqlConnection = Connection.MySqlOpen();
+
+            Connection.MySqlQuery(
+                $"INSERT INTO `items` (`Name`, `Description`, `Img`, `Price`, `IdCategory`) VALUES (`{item.Name}`, `{item.Description}`, `{item.Img}`, `{item.Price}`, `{item.Category.Id}`);",
+                MySqlConnection);
+            MySqlConnection.Close();
+
+            int IdItem = -1;
+
+            MySqlConnection = Connection.MySqlOpen();
+            MySqlDataReader mySqlDataReaderItem = Connection.MySqlQuery(
+                $"SELECT `Id` FROM `items` WHERE `Name` = '{item.Name}' AND `Description` = '{item.Description}' AND `Price` = {item.Price} AND `IdCategory` = {item.Category.Id};",
+                MySqlConnection);
+
+            if (mySqlDataReaderItem.HasRows)
+            {
+                mySqlDataReaderItem.Read();
+                IdItem = mySqlDataReaderItem.GetInt32(0);
+            }
+
+            MySqlConnection.Clone();
+            return IdItem;
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Shop_Klimov.Data.Interfaces;
+﻿using MySql.Data.MySqlClient;
+using Shop_Klimov.Data.Common;
+using Shop_Klimov.Data.Interfaces;
 using Shop_Klimov.Data.Models;
 
 namespace Shop_Klimov.Data.Mocks
@@ -60,6 +62,32 @@ namespace Shop_Klimov.Data.Mocks
                     }
                 };
             }
+        }
+
+        public int Add(Items item)
+        {
+            MySqlConnection MySqlConnection = Connection.MySqlOpen();
+
+            Connection.MySqlQuery(
+                $"INSERT INTO `items` (`Name`, `Description`, `Img`, `Price`, `IdCategory`) VALUES (`{item.Name}`, `{item.Description}`, `{item.Img}`, `{item.Price}`, `{item.Category.Id}`);",
+                MySqlConnection);
+            MySqlConnection.Close();
+
+            int IdItem = -1;
+
+            MySqlConnection = Connection.MySqlOpen();
+            MySqlDataReader mySqlDataReaderItem = Connection.MySqlQuery(
+                $"SELECT `Id` FROM `items` WHERE `Name` = '{item.Name}' AND `Description` = '{item.Description}' AND `Price` = {item.Price} AND `IdCategory` = {item.Category.Id};",
+                MySqlConnection);
+
+            if (mySqlDataReaderItem.HasRows)
+            {
+                mySqlDataReaderItem.Read();
+                IdItem = mySqlDataReaderItem.GetInt32(0);
+            }
+
+            MySqlConnection.Clone();
+            return IdItem;
         }
     }
 }
