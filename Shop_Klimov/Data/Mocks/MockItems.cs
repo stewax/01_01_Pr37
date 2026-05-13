@@ -89,5 +89,25 @@ namespace Shop_Klimov.Data.Mocks
             MySqlConnection.Clone();
             return IdItem;
         }
+
+        public void Delete(int id)
+        {
+            MySqlConnection MySqlConnection = Connection.MySqlOpen();
+
+            Connection.MySqlQuery(
+                $"DELETE FROM `items` WHERE `Id` = {id};",
+                MySqlConnection);
+            MySqlConnection.Close();
+        }
+
+        public void Update(Items item)
+        {
+            MySqlConnection MySqlConnection = Connection.MySqlOpen();
+
+            Connection.MySqlQuery(
+                $"UPDATE `items` SET `Name` = '{item.Name}', `Description` = '{item.Description}', `Img` = '{item.Img}', `Price` = {item.Price}, `IdCategory` = {item.Category.Id} WHERE `Id` = {item.Id};",
+                MySqlConnection);
+            MySqlConnection.Close();
+        }
     }
 }

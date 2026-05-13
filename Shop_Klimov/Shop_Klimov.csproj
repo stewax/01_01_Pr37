@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\img\basket.png" />
+    <Content Remove="wwwroot\img\image.png" />
     <Content Remove="wwwroot\img\search.png" />
   </ItemGroup>
 
@@ -18,6 +19,7 @@
 
   <ItemGroup>
     <Resource Include="wwwroot\img\basket.png" />
+    <Resource Include="wwwroot\img\image.png" />
     <Resource Include="wwwroot\img\search.png" />
   </ItemGroup>
 

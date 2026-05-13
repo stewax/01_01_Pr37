@@ -58,6 +58,17 @@
                     <div>Категория: @item.Category.Name</div>
                     <div>Описание: @item.Description</div>
                 </div>
+                <div class="DelEdit">
+                    <form method="post" action="/Items/Delete">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <input type="submit" value="Удалить" />
+                    </form>
+
+                    <form method="get" action="/Items/Update">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <input type="submit" value="Изменить" />
+                    </form>
+                </div>
             </div>
         }
     }

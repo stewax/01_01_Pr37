@@ -48,6 +48,14 @@ namespace Shop_Klimov.Controllers
             return View(Categories);
         }
 
+        [HttpGet]
+        public ViewResult Update(int id)
+        {
+            Items item = IAllItems.AllItems.FirstOrDefault(x => x.Id == id);
+            ViewBag.Categories = IAllCategorys.AllCategories;
+            return View(item);
+        }
+
         /// <summary>
         /// Метод добавления предмета
         /// </summary>
@@ -62,7 +70,7 @@ namespace Shop_Klimov.Controllers
         {
             if (files != null)
             {
-                var uploads = Path.Combine(hostingEnvironment.ContentRootPath, "img");
+                var uploads = Path.Combine(hostingEnvironment.ContentRootPath, "wwwroot", "img");
                 var filePath = Path.Combine(uploads, files.FileName);
                 files.CopyTo(new FileStream(filePath, FileMode.Create));
             }
@@ -77,6 +85,53 @@ namespace Shop_Klimov.Controllers
             int id = IAllItems.Add(newItems);
 
             return Redirect("/Items/Update?id=" + id);
+        }
+
+        /// <summary>
+        /// Метод удаления предмета
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public RedirectResult Delete(int id)
+        {
+            IAllItems.Delete(id);
+            return Redirect("/Items/List");
+        }
+
+        /// <summary>
+        /// Метод обновления предмета
+        /// </summary>
+        /// <param name="name">Наименование предмета</param>
+        /// <param name="description">Описание предмета</param>
+        /// <param name="files">Изображение</param>
+        /// <param name="price">Цена</param>
+        /// <param name="idCategory">Код категории</param>
+        /// <returns></returns>
+        [HttpPost]
+        public RedirectResult Update(int id, string name, string description, IFormFile files, float price, int idCategory)
+        {
+            Items oldItem = IAllItems.AllItems.FirstOrDefault(x => x.Id == id);
+
+            Items item = new Items()
+            {
+                Id = id,
+                Name = name,
+                Description = description,
+                Price = Convert.ToInt32(price),
+                Category = new Categories() { Id = idCategory },
+                Img = oldItem.Img
+            };
+
+            if (files != null)
+            {
+                var uploads = Path.Combine(hostingEnvironment.ContentRootPath, "wwwroot", "img");
+                var filePath = Path.Combine(uploads, files.FileName);
+                files.CopyTo(new FileStream(filePath, FileMode.Create));
+                item.Img = files.FileName;
+            }
+
+            IAllItems.Update(item);
+            return Redirect("/Items/List");
         }
     }
 }

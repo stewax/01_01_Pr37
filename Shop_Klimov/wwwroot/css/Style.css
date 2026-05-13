@@ -33,6 +33,7 @@
     box-shadow: 2px 2px 2px #00000038;
     margin-bottom: 10px;
     display: flex;
+    align-items: center;
 }
 
     .item img {
@@ -45,6 +46,12 @@
         margin-left: 20px;
         padding-top: 5px;
         padding-bottom: 5px;
+    }
+
+    .item .DelEdit {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
 .category {

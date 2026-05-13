@@ -4,22 +4,22 @@
     Layout = "_Layout";
 }
 
-<from method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     <div>
         Наименование:
-        <br /><input name="name" placeholder="Наименование:"/>
+        <br /><input name="name" placeholder="Наименование"/>
     </div>
     <div>
         Описание:
-        <br /><input name="description" placeholder="Описание:"/>
+        <br /><input name="description" placeholder="Описание"/>
     </div>
     <div>
-        <label for="file">Изображние</label>
+        <label for="file">Изображение</label>
         <br /><input name="files" type="file"/>
     </div>
     <div>
         Стоимость:
-        <br /><input name="price"/>
+        <br /><input name="price" placeholder="Стоимость" />
     </div>
     <div>
         Категория:
@@ -32,5 +32,5 @@
             }
         </select>
     </div>
-    <input type="submit"/>
-</from>
+    <input type="submit" value="Добавить товар"/>
+</form>
