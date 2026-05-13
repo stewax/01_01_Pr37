@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop_Klimov.Data.Interfaces;
+using Shop_Klimov.Data.Models;
 using Shop_Klimov.Data.ViewModell;
 
 namespace Shop_Klimov.Controllers
@@ -34,6 +35,14 @@ namespace Shop_Klimov.Controllers
             }
 
             return View(VMItems);
+        }
+
+        [HttpGet]
+        public ViewResult Add()
+        {
+            IEnumerable<Categories> Categories = IAllCategorys.AllCategories;
+
+            return View(Categories);
         }
     }
 }
