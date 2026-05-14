@@ -8,15 +8,28 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
     <body>
-        <div class="header">
-            <img src="~/img/search.png"/>
-            <input class="search" placeholder="Поиск по сайту" />
-            <a class="toCategories" href="/Categories/Categories">Категории</a>
-            <a class="toCategories" href="/Items/List">Товары</a>
-            <img class="basket" src="~/img/basket.png"/>
+    <div class="header">
+        <img src="~/img/search.png" />
+        <input class="search" placeholder="Поиск по сайту" />
+        <a class="toCategories" href="/Categories/Categories">Категории</a>
+        <a class="toCategories" href="/Items/List">Товары</a>
+        <div class="basket-container">
+            <img class="basket" src="~/img/basket.png" />
+            <div class="textBasket">0</div>
         </div>
+    </div>
         <div>
             @RenderBody()
         </div>
     </body>
 </html>
+
+<script>
+    function updateBasketCounter(data) {
+        var totalCount = 0;
+        for (var i = 0; i < data.length; i++) {
+            totalCount += data[i].count;
+        }
+        $(".textBasket").text(totalCount.toString());
+    }
+</script>
