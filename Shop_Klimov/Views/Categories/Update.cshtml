@@ -1,0 +1,19 @@
+﻿@using Shop_Klimov.Data.Models;
+@model Categories
+@{
+    Layout = "_Layout";
+}
+
+<form method="post" action="/Categories/Update">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <div>
+        Наименование:
+        <br /><input name="name" value="@Model.Name" />
+    </div>
+    <div>
+        Описание:
+        <br /><input name="description" value="@Model.Description" />
+    </div>
+    <input type="submit" value="Сохранить" />
+</form>

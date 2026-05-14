@@ -26,6 +26,9 @@
     <p>Сортировка по цене:</p>
     <button onclick="sortAsc()">От меньшей к большей</button>
     <button onclick="sortDesc()">От большей к меньшей</button>
+    <form class="add" method="get" action="/items/Add">
+        <input class="adding" type="submit" value="Добавить товар" />
+    </form>
     <script>
         function SelectCategory(sender) {
             window.location = "/Items/List?id=" + sender.value;
@@ -69,12 +72,12 @@
                     <div>Описание: @item.Description</div>
                 </div>
                 <div class="DelEdit">
-                    <form method="post" action="/Items/Delete">
+                    <form class="del" method="post" action="/Items/Delete">
                         <input type="hidden" name="id" value="@item.Id" />
                         <input type="submit" value="Удалить" />
                     </form>
 
-                    <form method="get" action="/Items/Update">
+                    <form class="edit" method="get" action="/Items/Update">
                         <input type="hidden" name="id" value="@item.Id" />
                         <input type="submit" value="Изменить" />
                     </form>

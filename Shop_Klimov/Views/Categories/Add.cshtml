@@ -1,0 +1,16 @@
+﻿@using Shop_Klimov.Data.Models;
+@{
+    Layout = "_Layout";
+}
+
+<form method="post" action="/Categories/Add">
+    <div>
+        Наименование:
+        <br /><input name="name" placeholder="Наименование"/>
+    </div>
+    <div>
+        Описание:
+        <br /><input name="description" placeholder="Описание"/>
+    </div>
+    <input type="submit" value="Добавить категорию"/>
+</form>

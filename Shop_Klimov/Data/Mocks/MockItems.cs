@@ -69,7 +69,7 @@ namespace Shop_Klimov.Data.Mocks
             MySqlConnection MySqlConnection = Connection.MySqlOpen();
 
             Connection.MySqlQuery(
-                $"INSERT INTO `items` (`Name`, `Description`, `Img`, `Price`, `IdCategory`) VALUES (`{item.Name}`, `{item.Description}`, `{item.Img}`, `{item.Price}`, `{item.Category.Id}`);",
+                $"INSERT INTO `Items` (`Name`, `Description`, `Img`, `Price`, `IdCategory`) VALUES (`{item.Name}`, `{item.Description}`, `{item.Img}`, `{item.Price}`, `{item.Category.Id}`);",
                 MySqlConnection);
             MySqlConnection.Close();
 
@@ -77,7 +77,7 @@ namespace Shop_Klimov.Data.Mocks
 
             MySqlConnection = Connection.MySqlOpen();
             MySqlDataReader mySqlDataReaderItem = Connection.MySqlQuery(
-                $"SELECT `Id` FROM `items` WHERE `Name` = '{item.Name}' AND `Description` = '{item.Description}' AND `Price` = {item.Price} AND `IdCategory` = {item.Category.Id};",
+                $"SELECT `Id` FROM `Items` WHERE `Name` = '{item.Name}' AND `Description` = '{item.Description}' AND `Price` = {item.Price} AND `IdCategory` = {item.Category.Id};",
                 MySqlConnection);
 
             if (mySqlDataReaderItem.HasRows)
@@ -95,7 +95,7 @@ namespace Shop_Klimov.Data.Mocks
             MySqlConnection MySqlConnection = Connection.MySqlOpen();
 
             Connection.MySqlQuery(
-                $"DELETE FROM `items` WHERE `Id` = {id};",
+                $"DELETE FROM `Items` WHERE `Id` = {id};",
                 MySqlConnection);
             MySqlConnection.Close();
         }
@@ -105,7 +105,7 @@ namespace Shop_Klimov.Data.Mocks
             MySqlConnection MySqlConnection = Connection.MySqlOpen();
 
             Connection.MySqlQuery(
-                $"UPDATE `items` SET `Name` = '{item.Name}', `Description` = '{item.Description}', `Img` = '{item.Img}', `Price` = {item.Price}, `IdCategory` = {item.Category.Id} WHERE `Id` = {item.Id};",
+                $"UPDATE `Items` SET `Name` = '{item.Name}', `Description` = '{item.Description}', `Img` = '{item.Img}', `Price` = {item.Price}, `IdCategory` = {item.Category.Id} WHERE `Id` = {item.Id};",
                 MySqlConnection);
             MySqlConnection.Close();
         }

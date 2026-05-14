@@ -1,4 +1,6 @@
-﻿using Shop_Klimov.Data.Interfaces;
+﻿using MySql.Data.MySqlClient;
+using Shop_Klimov.Data.Common;
+using Shop_Klimov.Data.Interfaces;
 using Shop_Klimov.Data.Models;
 
 namespace Shop_Klimov.Data.Mocks
@@ -37,6 +39,53 @@ namespace Shop_Klimov.Data.Mocks
                     }
                 };
             }
+        }
+
+        public int Add(Categories category)
+        {
+            MySqlConnection MySqlConnection = Connection.MySqlOpen();
+
+            Connection.MySqlQuery(
+                $"INSERT INTO `categories` (`Name`, `Description`) VALUES ('{category.Name}', '{category.Description}');",
+                MySqlConnection);
+            MySqlConnection.Close();
+
+            int IdCategory = -1;
+
+            MySqlConnection = Connection.MySqlOpen();
+            MySqlDataReader mySqlDataReaderCategory = Connection.MySqlQuery(
+                $"SELECT `Id` FROM `categories` WHERE `Name` = '{category.Name}' AND `Description` = '{category.Description}';",
+                MySqlConnection);
+
+            if (mySqlDataReaderCategory.HasRows)
+            {
+                mySqlDataReaderCategory.Read();
+                IdCategory = mySqlDataReaderCategory.GetInt32(0);
+            }
+
+            MySqlConnection.Clone();
+
+            return IdCategory;
+        }
+
+        public void Delete(int id)
+        {
+            MySqlConnection MySqlConnection = Connection.MySqlOpen();
+
+            Connection.MySqlQuery(
+                $"DELETE FROM `categories` WHERE `Id` = {id};",
+                MySqlConnection);
+            MySqlConnection.Close();
+        }
+
+        public void Update(Categories category)
+        {
+            MySqlConnection MySqlConnection = Connection.MySqlOpen();
+
+            Connection.MySqlQuery(
+                $"UPDATE `categories` SET `Name` = '{category.Name}', `Description` = '{category.Description}' WHERE `Id` = {category.Id};",
+                MySqlConnection);
+            MySqlConnection.Close();
         }
     }
 }
