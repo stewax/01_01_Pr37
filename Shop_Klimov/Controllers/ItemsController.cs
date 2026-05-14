@@ -146,7 +146,7 @@ namespace Shop_Klimov.Controllers
             return Json(BasketItem);
         }
 
-        public ActionResult Basket(int idItem = -1, int count = -1)
+        public ActionResult BasketCount(int idItem = -1, int count = -1)
         {
             if (idItem != -1)
             {
